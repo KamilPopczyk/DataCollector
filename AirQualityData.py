@@ -3,7 +3,7 @@ import urllib.request
 import string
 
 
-class AirQualityData():
+class AirQualityData:
     @staticmethod
     def give_all_stations():
         url = 'http://api.gios.gov.pl/pjp-api/rest/station/findAll'
