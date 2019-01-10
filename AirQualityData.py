@@ -29,3 +29,18 @@ class AirQualityData:
 
         return city_stations_dict
 
+    @staticmethod
+    def give_data_id(station_id: int):
+        url = 'http://api.gios.gov.pl/pjp-api/rest/station/sensors/{}'
+        url_getData = 'http://api.gios.gov.pl/pjp-api/rest/data/getData/{}'
+        air_data = {}
+
+        with urllib.request.urlopen(url.format(station_id)) as url:
+            sensors_data = json.loads(url.read().decode())
+
+        for sensor in sensors_data:
+            with urllib.request.urlopen(url_getData.format(sensor['id'])) as url:
+                param_data = json.loads(url.read().decode())
+            air_data[sensor['param']['paramCode']] = param_data['values']
+
+        return air_data
