@@ -18,6 +18,23 @@ def save_data_csv(file_name: string, data_dict):
                 data_list.append(data_dict[group][i]['value'])
             data_writer.writerow(data_list)
             data_list.clear()
+        csvfile.close()
+
+
+def add_data_to_csv(file_name: string, data_dict):
+    if file_name.find('.csv') == -1:
+        file_name += '.csv'
+    group_keys = list(data_dict.keys())
+    date_list = []
+
+    with open(file_name, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+           date_list.append(row['Date'])
+
+        last_date = date_list[-1]
+
+
 
 
 if __name__ == "__main__":
@@ -31,6 +48,7 @@ if __name__ == "__main__":
         # print(air_data['NO2'])
 
         save_data_csv(station, air_data)
+        add_data_to_csv(station, air_data)
 
         # for data in air_data['NO2']:
         #     print(data['value'])
