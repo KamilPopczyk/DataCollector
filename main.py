@@ -11,7 +11,7 @@ def save_data_csv(file_name: string, data_dict):
     with open(file_name, 'w', newline='') as csvfile:
         data_writer = csv.writer(csvfile, quotechar=',', quoting=csv.QUOTE_MINIMAL)
         data_writer.writerow(['Date'] + group_keys)
-        for i in range(len(data_dict[group_keys[0]])):
+        for i in reversed(range(len(data_dict[group_keys[0]]))):    # old first
             data_list = []
             data_list.append(data_dict[group_keys[0]][i]['date'])
             for group in group_keys:
