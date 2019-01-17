@@ -4,6 +4,7 @@ import csv
 import time
 import datetime
 
+
 def save_data_csv(file_name: string, data_dict):
     if file_name.find('.csv') == -1:
         file_name += '.csv'
@@ -20,7 +21,6 @@ def save_data_csv(file_name: string, data_dict):
                 data_list.append(data_dict[group][i]['value'])
             data_writer.writerow(data_list)
             data_list.clear()
-        csvfile.close()
 
 
 def add_data_to_csv(file_name: string, data_dict):
